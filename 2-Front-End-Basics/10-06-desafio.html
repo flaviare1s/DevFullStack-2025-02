@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>+PraTI</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    #galeria {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#galeria">Galeria</a>
+        </li>
+        <li>
+          <a href="#video">Vídeo</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="galeria">
+      <div class="img-container">
+        <img src="./assets/Batman.jpg" alt="Batman">
+      </div>
+      <div class="img-container">
+        <img src="./assets/Daredevil.jpg" alt="Daredevil">
+      </div>
+    </section>
+    <section id="video">
+      <section id="video">
+        <iframe src="https://www.youtube.com/embed/NLOp_6uPccQ" title="YouTube video player"
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+      </section>      
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 - Desenvolvido por <a href="mailto:email@exemplo.com">Flávia</a> - <a href="tel:+558551213123">(85)51213123</a></p>
+  </footer>
+</body>
+</html>
