@@ -3,9 +3,9 @@ const list = document.getElementById('list')
 const inputItem = document.getElementById("inputItem")
 const addBtn = document.getElementById('addBtn')
 const resetBtn = document.getElementById('resetBtn')
+const contador = document.getElementById('contador')
 
 let items = JSON.parse(localStorage.getItem('listaCompras')) || []
-
 function salvarDados() {
   localStorage.setItem('listaCompras', JSON.stringify(items))
 }
@@ -31,6 +31,11 @@ function renderizarLista() {
 
     const label = document.createElement('label')
     label.textContent = item.item
+    label.setAttribute('for', `item${index}`)
+
+    if(item.comprado) {
+      label.classList.add('checked')
+    }
 
     const btnDelete = document.createElement('button')
     btnDelete.textContent = '🗑️'
@@ -46,9 +51,12 @@ function renderizarLista() {
     div.appendChild(label)
     li.appendChild(btnDelete)
     list.appendChild(li)
+    label.id = `item${index}`
+    checkbox.id = `item${index}`
 
     list.style.display = items.length ? "flex" : "none"
   })
+  contador.textContent = `${items.length} item(s) na lista`;
 }
 
 form.addEventListener('submit', (event) => {
@@ -83,6 +91,7 @@ resetBtn.addEventListener('click', () => {
   }
 })
 
+renderizarLista()
 
 // Funcionalidades:
 
