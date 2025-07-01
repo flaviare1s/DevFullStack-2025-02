@@ -126,7 +126,17 @@ pendentes.addEventListener('change', () => {
   renderizarLista()
 })
 
-renderizarLista()
+const ordemSelect = document.getElementById("ordem")
 
-// Funcionalidades:
-// Permita ordenar alfabeticamente ou por status
+ordemSelect.addEventListener("change", () => {
+  const valor = ordemSelect.value
+
+  if (valor === "alfabetica") {
+    items.sort((a, b) => a.item.localeCompare(b.item))
+  } else if (valor === "status") {
+    items.sort((a, b) => a.comprado - b.comprado)
+  }
+  renderizarLista()
+})
+
+renderizarLista()
