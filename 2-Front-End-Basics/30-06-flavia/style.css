@@ -51,6 +51,7 @@ button {
   flex-direction: column;
   align-items: flex-start;
   list-style-position: inside;
+  list-style-type: none;
   background-color: white;
   padding: 20px 10px;
   margin: 20px 50px 50px 50px;
@@ -62,5 +63,28 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: red;
+}
+
+.div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  accent-color: lightgreen;
+}
+
+.checked {
+  text-decoration: line-through;
+  color: gray;
 }
