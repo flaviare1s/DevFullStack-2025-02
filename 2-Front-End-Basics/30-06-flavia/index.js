@@ -11,40 +11,43 @@ function salvarDados() {
 }
 
 function renderizarLista() {
-  list.innerHTML = ''
-  items.forEach((item, index) => {
-    const div = document.createElement('div')
-    div.classList.add('div')
+  list.innerHTML = ""
+  const itensFiltrados = obterItensFiltrados()
+  itensFiltrados.forEach((itemFiltrado) => {
+    const index = items.findIndex((i) => i.item === itemFiltrado.item)
 
-    const li = document.createElement('li')
-    li.classList.add('item')
+    const div = document.createElement("div")
+    div.classList.add("div")
 
-    const checkbox = document.createElement('input')
-    checkbox.type = 'checkbox'
-    checkbox.checked = item.comprado
+    const li = document.createElement("li")
+    li.classList.add("item")
+
+    const checkbox = document.createElement("input")
+    checkbox.type = "checkbox"
+    checkbox.checked = itemFiltrado.comprado
 
     checkbox.addEventListener("change", () => {
       items[index].comprado = checkbox.checked
       salvarDados()
       renderizarLista()
-    })
+    });
 
-    const label = document.createElement('label')
-    label.textContent = item.item
-    label.setAttribute('for', `item${index}`)
+    const label = document.createElement("label")
+    label.textContent = itemFiltrado.item;
+    label.setAttribute("for", `item${index}`)
 
-    if(item.comprado) {
-      label.classList.add('checked')
+    if (itemFiltrado.comprado) {
+      label.classList.add("checked")
     }
 
-    const btnDelete = document.createElement('button')
-    btnDelete.textContent = '🗑️'
-    btnDelete.title = 'Remover item'
-    btnDelete.classList.add('delete')
+    const btnDelete = document.createElement("button")
+    btnDelete.textContent = "🗑️"
+    btnDelete.title = "Remover item"
+    btnDelete.classList.add("delete")
 
-    btnDelete.addEventListener('click', () => {
+    btnDelete.addEventListener("click", () => {
       removerItem(index)
-    })
+    });
 
     li.appendChild(div)
     div.appendChild(checkbox)
@@ -56,8 +59,9 @@ function renderizarLista() {
 
     list.style.display = items.length ? "flex" : "none"
   })
-  contador.textContent = `${items.length} item(s) na lista`;
+  contador.textContent = `${items.length} item(s) na lista`
 }
+
 
 form.addEventListener('submit', (event) => {
   event.preventDefault()
@@ -91,10 +95,38 @@ resetBtn.addEventListener('click', () => {
   }
 })
 
+let filtroAtual = "todos"
+const todos = document.getElementById('todos')
+const comprados = document.getElementById('comprados')
+const pendentes = document.getElementById('pendentes')
+
+function obterItensFiltrados() {
+  if (filtroAtual === "todos") {
+    return items
+  } else if (filtroAtual === "comprados") {
+    return items.filter(item => item.comprado)
+  } else if (filtroAtual === "pendentes") {
+    return items.filter(item => !item.comprado)
+  }
+  return items
+}
+
+todos.addEventListener('change', () => {
+  filtroAtual = "todos"
+  renderizarLista()
+});
+
+comprados.addEventListener('change', () => {
+  filtroAtual = "comprados"
+  renderizarLista()
+})
+
+pendentes.addEventListener('change', () => {
+  filtroAtual = "pendentes"
+  renderizarLista()
+})
+
 renderizarLista()
 
 // Funcionalidades:
-
-// Contador de Itens - Mostrar quantos itens tem na lista, atualizando em tempo real
-// Adicione filtros para itens 'comprados' e 'pedentes'
 // Permita ordenar alfabeticamente ou por status
