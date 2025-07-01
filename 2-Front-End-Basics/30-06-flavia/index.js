@@ -135,7 +135,7 @@ ordemSelect.addEventListener("change", () => {
     items.sort((a, b) => a.item.localeCompare(b.item))
   } else if (valor === "status") {
     items.sort((a, b) => a.comprado - b.comprado)
-  }
+  } 
   renderizarLista()
 })
 
