@@ -57,9 +57,9 @@ function renderizarLista() {
     label.id = `item${index}`
     checkbox.id = `item${index}`
 
-    list.style.display = items.length ? "flex" : "none"
+    list.style.display = itensFiltrados.length ? "flex" : "none"
   })
-  contador.textContent = `${items.length} item(s) na lista`
+  contador.textContent = `${itensFiltrados.length} item(s) na lista`
 }
 
 
