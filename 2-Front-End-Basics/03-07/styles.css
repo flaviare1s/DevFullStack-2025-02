@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Maiden';
+    src: url('./fonts/maiden.ttf') format('truetype');
+  }
+
 * {
     margin: 0;
     padding: 0;
@@ -10,21 +15,49 @@ body {
     color: #333;
 }
 
+.logo {
+    font-family: 'Maiden';
+    font-size: 2rem;
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+}
+
 .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 90%;
     max-width: 1000px;
     margin: auto;
 }
 
-.header {
-    background-color: #fff;
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+header {
+    background-color: black;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
 }
 
+.nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
 .nav {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .nav ul {
@@ -50,16 +83,13 @@ nav li +li {
     font-size: 1.5rem;
 }
 
-@media(max-width: 462px) {
+h1, h2 {
+    font-family: 'Maiden';
+}
+
+@media(max-width: 500px) {
     .nav {
-        position: none;
-        left: 0;
-        right: 0;
-        background: #fff;
-        flex-direction: column;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s;
+        margin-top: -30px;
     }
 
     .nav.open {
@@ -69,17 +99,53 @@ nav li +li {
     .nav-toggle {
         display: block;
     }
+
+    .hero {
+        background-image: url('./assets/bg-maiden.jpeg');
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    
+    .hero h1 {
+        margin-top: -30px;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .sections {
+        background-image: none !important;
+        background-color: rgba(0, 0, 0, 0.923);
+        color: #fff;
+    }
+    
 }
 
 .hero {
-    background-color: #f4f4f4;
+    background-color: rgba(0, 0, 0, 0.923);
     padding: 4rem 0;
     text-align: center;
+}
+
+.hero h1, p {
+    font-weight: bold;
+    color: red;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.607);
+    padding: 1rem 0;
 }
 
 .hero .btn {
     margin-top: 1rem;
     text-decoration: none;
+}
+
+.sections {
+    background-image: url('./assets/bg-maiden.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    font-weight: bold;
 }
 
 .services {
@@ -131,7 +197,7 @@ nav li +li {
 }
 
 .footer {
-    background-color: #f4f4f4;
+    background-color: black;
     text-align: center;
     padding: 1rem 0;
 }
