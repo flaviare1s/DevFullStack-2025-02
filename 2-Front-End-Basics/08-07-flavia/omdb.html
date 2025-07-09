@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OMDB</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #333;
+      color: #f4f4f4;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #f4f4f4;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #007acc;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    #resultado {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: #444;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #resultado img {
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    #resultado.active {
+      display: flex;
+    }
+
+    @media (max-width: 600px) {
+
+      form,
+      #resultado {
+        margin: 10px;
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Buscar filmes</h1>
+
+  <form id="form">
+    <label for="filme">Digite o nome do filme:</label>
+    <input type="text" id="filme" placeholder="Ex: Star Wars" />
+    <button id="buscar">Buscar</button>
+  </form>
+
+  <div id="resultado"></div>
+
+  <script>
+    const filmeInput = document.getElementById("filme");
+    const form = document.getElementById("form");
+    const resultadoDiv = document.getElementById("resultado");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      buscarFilme();
+    });
+
+    async function buscarFilme() {
+      const filme = filmeInput.value.trim();
+      const apiKey = "";
+      const url = `https://www.omdbapi.com/?t=${encodeURIComponent(
+        filme
+      )}&plot=full&apikey=${apiKey}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        resultadoDiv.classList.add("active");
+
+        if (data.Response === "True") {
+          resultadoDiv.innerHTML = `
+              <h2>${data.Title} (${data.Year})</h2>
+              <p><strong>Diretor:</strong> ${data.Director}</p>
+              <p><strong>Gênero:</strong> ${data.Genre}</p>
+              <p><strong>Sinopse:</strong> ${data.Plot}</p>
+              <img src="${data.Poster}" alt="Poster de ${data.Title}" style="max-width:200px;">
+            `;
+        } else {
+          resultadoDiv.innerHTML = `<p>Filme não encontrado.</p>`;
+        }
+      } catch (error) {
+        resultadoDiv.classList.add("active");
+        resultadoDiv.innerHTML = `<p>Erro ao buscar filme. Tente novamente.</p>`;
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+
+</html>
