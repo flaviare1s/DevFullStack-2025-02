@@ -19,5 +19,8 @@
   "homepage": "https://github.com/jhyago/DevFullStack-T1-2025#readme",
   "dependencies": {
     "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }
