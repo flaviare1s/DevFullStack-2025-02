@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+  <title>Lista de Compras</title>
+</head>
+<body>
+  <h1>Lista de Compras</h1>
+  <main class="container">
+    <div>
+      <form id="form">
+        <input type="text" id="inputItem" placeholder="Digite aqui o item">
+        <button type="submit" id="addBtn">Adicionar</button>
+        <button type="button" id="resetBtn">Limpar</button>
+      </form>
+      <p id="contador" class="contador">0 item(s) na lista</p>
+      <ul id="list"></ul>      
+      <div class="filtros">
+        <label>
+          <input type="radio" name="filtro" value="todos" id="todos" checked>
+          Todos
+        </label>
+        <label>
+          <input type="radio" name="filtro" value="pendentes" id="pendentes">
+          Pendentes
+        </label>
+        <label>
+          <input type="radio" name="filtro" value="comprados" id="comprados">
+          Comprados
+        </label>
+      </div>
+      
+      <div class="ordenacao">
+        <label for="ordem">Ordenar por:</label>
+        <select id="ordem">
+          <option value="alfabetica" id="alfabetica">A-Z</option>
+          <option value="status" id="status">Status</option>
+        </select>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>

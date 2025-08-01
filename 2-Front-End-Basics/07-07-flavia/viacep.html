@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Via CEP</title>
+  </head>
+  <body>
+    <h1>Via CEP</h1>
+    <label for="cep">Digite o CEP (8 dígitos):</label>
+    <input type="text" id="cep" minlength="8" placeholder="Ex: 01001010" />
+    <button id="buscar" onclick="consultarCEP()">Buscar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+      const cepInput = document.getElementById("cep");
+      const buscarButton = document.getElementById("buscar");
+      const resultadoDiv = document.getElementById("resultado");
+
+      async function consultarCEP() {
+        const cep = cepInput.value;
+        const url = `https://viacep.com.br/ws/${cep}/json/`;
+
+        try {
+          const response = await fetch(url, { method: "GET" });
+          const data = await response.json();
+
+          resultadoDiv.innerHTML = `
+            <p>CEP: ${data.cep}</p>
+            <p>Logradouro: ${data.logradouro}</p>
+            <p>Bairro: ${data.bairro}</p>
+            <p>Cidade: ${data.localidade}</p>
+            <p>Estado: ${data.uf}</p>
+            <p>Complemento: ${data.complemento}</p>
+          `;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    </script>
+  </body>
+</html>
