@@ -5,6 +5,7 @@ const FetchUser = () => {
     const [users, setUsers] = useState([])
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [newUser, setNewUser] = useState({name: '', email: ''})
 
     const getUsers = async () => {
         try {
@@ -14,6 +15,16 @@ const FetchUser = () => {
         } catch(err) {
             setError(err.message)
             setLoading(false)
+        }
+    }
+
+    const addUser = async (user) => {
+        try {
+            const response = await axios.post("https://jsonplaceholder.typicode.com/users", user)
+            setUsers([...users, response.data])
+            setNewUser({name: '', email: ''})
+        } catch(err) {
+            setError(err.message)
         }
     }
 
@@ -31,6 +42,15 @@ const FetchUser = () => {
                     <li key={user.id}>{user.name} - {user.email}</li>
                 ))}
             </ul>
+
+            <form onSubmit={(e) => {
+                e.preventDefault()
+                addUser(newUser)
+            }}>
+                <input type="text" placeholder="Nome"  onChange={(event) => setNewUser({...newUser, name: event.target.value})} value={newUser.name} />
+                <input type="email" placeholder="E-mail" onChange={(event) => setNewUser({...newUser, email: event.target.value})} value={newUser.email} />
+                <button>Adicionar</button>
+            </form>
         </div>
     )
 }
